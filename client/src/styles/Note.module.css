@@ -1,0 +1,21 @@
+.card {
+  height: 200px;
+  min-width: 150px;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: cornsilk;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px rgba(0, 0, 0, 0.08) 0px 0px 0px
+    1px;
+}
+
+.cardBody {
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, #000 60%, transparent);
+}
+
+.cardText {
+  white-space: pre-line;
+}
