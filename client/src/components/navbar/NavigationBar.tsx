@@ -1,5 +1,5 @@
 import { Container, Navbar } from "react-bootstrap";
-import { User } from "../types";
+import { User } from "../../types";
 import NavigationBarLogin from "./NavigationBarLogIn";
 import NavigationBarLogOut from "./NavigationBarLogOut";
 
@@ -17,7 +17,13 @@ export default function NavigationBar({
   onLogoutSuccesful,
 }: NavbarProps) {
   return (
-    <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
+    <Navbar
+      className="mb-4"
+      bg="primary"
+      variant="dark"
+      expand="sm"
+      sticky="top"
+    >
       <Container>
         <Navbar.Brand>Notes App</Navbar.Brand>
         <Navbar.Toggle aria-controls="main-nav" />

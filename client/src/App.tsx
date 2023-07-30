@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import LoginModal from "./components/LoginModal";
-import NavigationBar from "./components/NavigationBar";
-import PageLogIn from "./components/PageLogIn";
-import SignUpModal from "./components/SignUpModal";
+import LogoutPage from "./components/LogoutPage";
+import LoginPage from "./components/LoginPage";
+import LoginModal from "./components/forms/LoginModal";
+import NavigationBar from "./components/navbar/NavigationBar";
+import SignUpModal from "./components/forms/SignUpModal";
 import * as UsersApi from "./network/usersApi";
 import "./styles/global.css";
 import { User } from "./types";
-import PageLogOut from "./components/PageLogOut";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -34,7 +34,7 @@ function App() {
         onSignUpClick={() => setShowSignUpModal(true)}
         onLogoutSuccesful={() => setLoggedInUser(null)}
       />
-      <Container>{loggedInUser ? <PageLogIn /> : <PageLogOut />}</Container>
+      <Container>{loggedInUser ? <LoginPage /> : <LogoutPage />}</Container>
       {showSignUpModal && (
         <SignUpModal
           onClose={() => setShowSignUpModal(false)}

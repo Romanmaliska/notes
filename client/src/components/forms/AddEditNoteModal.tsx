@@ -1,8 +1,8 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Note } from "../models/notes";
-import * as NotesApi from "../network/notesApi";
-import { NoteInput } from "../types";
+import { Note } from "../../models/notes";
+import * as NotesApi from "../../network/notesApi";
+import { NoteInput } from "../../types";
 import TextInputField from "./TextInputField";
 
 type AddEditNoteDialogProps = {

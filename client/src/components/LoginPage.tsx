@@ -4,14 +4,14 @@ import { FaPlus } from "react-icons/fa";
 import { Note as NoteModel } from "../models/notes";
 import * as NotesApi from "../network/notesApi";
 import stylesUtils from "../styles/utils.module.css";
-import AddEditNoteDialog from "./AddEditNoteModal";
-import Note from "./Note";
+import AddEditNoteDialog from "./forms/AddEditNoteModal";
+import Note from "./forms/Note";
 
-export default function PageLogIn() {
+export default function LoginPage() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
   const [notesLoading, setNotesLoading] = useState(false);
   const [showNotesLoadingError, setShowNotesLoadingError] = useState(false);
-  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [showAddEditNoteDialog, setShowAddEditNoteDialog] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState<NoteModel | null>(null);
 
   useEffect(() => {
@@ -42,10 +42,11 @@ export default function PageLogIn() {
   };
 
   return (
-    <>
+    <section>
       <Button
         className={`mb-4 ${stylesUtils.blockCenter} ${stylesUtils.flexCenter}`}
-        onClick={() => setShowAddNoteDialog(true)}
+        onClick={() => setShowAddEditNoteDialog(true)}
+
       >
         <FaPlus />
         Add New Note
@@ -74,13 +75,13 @@ export default function PageLogIn() {
           ))}
         </Row>
       )}
-      {showAddNoteDialog && (
+      {showAddEditNoteDialog && (
         <AddEditNoteDialog
           noteToEdit={noteToEdit}
-          onClose={() => setShowAddNoteDialog(false)}
+          onClose={() => setShowAddEditNoteDialog(false)}
           onSave={(newNote) => {
             setNotes([...notes, newNote]);
-            setShowAddNoteDialog(false);
+            setShowAddEditNoteDialog(false);
           }}
         />
       )}
@@ -96,6 +97,6 @@ export default function PageLogIn() {
           }}
         />
       )}
-    </>
+    </section>
   );
 }
