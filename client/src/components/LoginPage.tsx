@@ -5,7 +5,7 @@ import { Note as NoteModel } from "../models/notes";
 import * as NotesApi from "../network/notesApi";
 import stylesUtils from "../styles/utils.module.css";
 import AddEditNoteDialog from "./forms/AddEditNoteModal";
-import Note from "./forms/Note";
+import Note from "./note/Note";
 
 export default function LoginPage() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
