@@ -4,6 +4,7 @@ import { Note } from "../../models/notes";
 import * as NotesApi from "../../network/notesApi";
 import { NoteInput } from "../../types";
 import TextInputField from "./TextInputField";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type AddEditNoteDialogProps = {
   noteToEdit?: Note | null;
@@ -27,11 +28,33 @@ export default function AddEditNoteDialog({
     },
   });
 
+  const queryClient = useQueryClient();
+
+  const postNotesMutation = useMutation({
+    mutationFn: NotesApi.postNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+    },
+  });
+
+  const updateNotesMutation = useMutation({
+    mutationFn: ({
+      noteToEdit,
+      input,
+    }: {
+      noteToEdit: Note;
+      input: NoteInput;
+    }) => NotesApi.updateNote(noteToEdit._id, input),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+    },
+  });
+
   const onSubmit = async (input: NoteInput) => {
     try {
-      const note: Note = noteToEdit
-        ? await NotesApi.updateNote(noteToEdit._id, input)
-        : await NotesApi.createNote(input);
+      const note: Note | any = noteToEdit
+        ? updateNotesMutation.mutate({ noteToEdit, input })
+        : postNotesMutation.mutate(input);
       onSave(note);
     } catch (error) {
       console.log(error);

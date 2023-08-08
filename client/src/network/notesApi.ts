@@ -1,13 +1,14 @@
 import { fetchData } from "../utils/fetchData";
 import { NoteInput } from "../types";
 import { Note } from "../models/notes";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const fetchNotes = async (): Promise<Note[]> => {
+export const getNotes = async (): Promise<Note[]> => {
   const response = await fetchData("/api/notes", { method: "GET" });
   return response.json();
 };
 
-export const createNote = async (note: NoteInput): Promise<Note> => {
+export const postNote = async (note: NoteInput): Promise<Note> => {
   const response = await fetchData("/api/notes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
