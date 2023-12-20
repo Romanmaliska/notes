@@ -2,7 +2,9 @@ import { fetchData } from "../utils/fetchData";
 import { User, SignUpCredentials, LoginCredentials } from "../types";
 
 export async function getLoggedUser(): Promise<User> {
-  const response = await fetchData("/api/users", { method: "GET" });
+  const response = await fetchData("http://api:3000/api/users", {
+    method: "GET",
+  });
   return response.json();
 }
 
