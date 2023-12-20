@@ -1,7 +1,6 @@
 import { fetchData } from "../utils/fetchData";
 import { NoteInput } from "../types";
 import { Note } from "../models/notes";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const getNotes = async (): Promise<Note[]> => {
   const response = await fetchData("/api/notes", { method: "GET" });
